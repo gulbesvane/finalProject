@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tags/:tag', to: 'posts#index', as: :tag
+  resources :posts
   #pages controller action home
   root 'pages#home'
   #showcase get request send to pages controller action showcase

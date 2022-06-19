@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+
+<%= render @post %>
+Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+
+<div>
+  <%= link_to "Edit this project", edit_post_path(@post) %> |
+  <%= link_to "Back to project showcase", posts_path %>
+
+  <%= button_to "Delete this project", @post, method: :delete %>
+</div>

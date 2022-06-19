@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<% @tags.each do |tag| %>
+<h1><%= link_to tag, "/tags/#{tag}" %></h1>
+<% end %> 
+
+<h1>Project showcase</h1>
+<div id="Project showcase">
+  <% @posts.each do |post| %>
+    <%= render post %>
+    <p>
+      <%= link_to "More", post %>
+      Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "Add new project", new_post_path %>
