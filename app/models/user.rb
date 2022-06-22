@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    # create association where user can have many posts
+    has_many :posts
     # validate username to be unique, present and its length
     validates :username, presence: true,
                  uniqueness: { case_sensitive: false },
