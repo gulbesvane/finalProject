@@ -3,7 +3,9 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
+    # force all tags to be saved lowercase
     ActsAsTaggableOn.force_lowercase = true
+    # remove all unused tag objects
     ActsAsTaggableOn.remove_unused_tags = true
     @tags = ActsAsTaggableOn::Tag.most_used(10).order("taggings_count DESC")
     if params[:tag]
