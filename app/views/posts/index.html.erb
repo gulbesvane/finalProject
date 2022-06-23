@@ -1,17 +1,41 @@
 <p style="color: green"><%= notice %></p>
+<h1>Project showcase</h1>
+
 <% @tags.each do |tag| %>
 <h1><%= link_to tag, "/tags/#{tag}" %></h1>
 <% end %> 
 
-<h1>Project showcase</h1>
-<div id="Project showcase">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "More", post %>
-      Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-    </p>
-  <% end %>
+<div class="container">
+    <% @posts.each do |post| %>
+        <div class="row justify-content-center">
+            <div class="col-md-8 mt-4">
+                <div class="card text-center shadow mb-5">
+                  <div class="card-header">
+                    by Ruta Gulbe
+                  </div>
+                <div class="card-body">
+                    <div class="imgContainer">
+                        <%# <img class="card-img-top img-fluid" src="<%= (url_for(post.image)) %>
+                        <div class="overlay"></div>
+                    </div>
+                    <h5 class="card-title mt-2"><%= post.title %></h5>
+                    <p class="card-text"><%= truncate(post.body, length:100) %></p>
+                    <%= link_to "View", post_path(post), class: "btn btn-outline-light btn-md" %>
+                    <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-light btn-md" %>
+                    <%= link_to "Delete", post_path(post),class: "btn btn-outline-light btn-md", data: { "turbo-method": :delete }, onclick: "return confirm('Are you sure?')" %>
+                    <p>
+                      Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+                    </p>
+                    <h5 class="card-title mt-2"> Views: <%= post.views %></h5>
+                    <h5 class="card-title mt-2"> Link to tutorial: <%= post.link %></h5>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>Created <%= time_ago_in_words(post.created_at) %> ago</small>
+                </div>
+                </div>
+            </div>
+        </div>
+    <%end%>
 </div>
 
 <%= link_to "Add new project", new_post_path %>

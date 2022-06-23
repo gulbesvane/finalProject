@@ -13,3 +13,210 @@
  *= require_tree .
  *= require_self
  */
+
+ body{
+    overflow-x: hidden;
+    background-color:#222629;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: 0;
+    color:#242424;
+    text-align: center;
+}
+h1, h2, h3, h5{
+    color:#dbad41;
+}
+h2{
+    letter-spacing: .1rem;
+}
+h3{
+    font-weight: 300;
+}
+p{
+    font-family: “Nunito Sans”,sans-serif;
+    color:#ffffffa6;
+    font-weight: 300;
+}
+li{
+    list-style: none;
+    color:#e22929;
+}
+/*--------Navbar--------*/
+.navbar{
+    padding-top:15px;
+    padding-bottom:15px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color:#6c757d;
+    font-size: 1.2rem;
+    letter-spacing: .1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active{
+    text-decoration:underline;
+    text-underline-offset: 0.4rem;
+    text-decoration-color: #dbad41;
+    text-decoration-thickness: 0.25rem;
+}
+.navbar-nav li{
+    padding-right: .7rem;
+}
+.sticky{
+    background-color:#dbad41;
+}
+
+/*----------Header-----------*/
+#home{
+    margin-bottom: 5vw;
+}
+.carousel-item{
+    height:100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* #slide1{
+    background-image: url('desktop1.jpg')
+}
+#slide2{
+    background-image: url('desktop2.jpg');
+}
+#slide3{
+    background-image: url('desktop3.jpg');
+} */
+
+.carousel-caption{
+    position:absolute;
+    top:22%;
+    width:100%;
+    left:0;
+    right:0;
+}
+
+.carousel-caption h1{
+    font-size:10vw;
+    font-weight:400;
+    letter-spacing: .7rem;
+    color:#dbad41;
+    padding-bottom: 1rem;
+}
+
+.carousel-caption h3{
+    padding-bottom: 1vw;
+}
+.imgContainer{
+    position: relative;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #dbad4173;
+    opacity: 0.3;
+}
+
+#headerText{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*---------Buttons-----------*/
+
+.btn{
+    border-color: #dbad41;
+    border-radius: 0;
+    border-width: medium;
+}
+.btn:focus{
+    box-shadow: none!important;
+}
+.btn-lg{
+    background-color: transparent;
+    color:#dbad41;
+}
+.btn-md{
+    background-color: transparent;
+    color:#dbad41;
+    border-width: thin;
+    margin-left: 0.3vw;
+}
+.btn-lg:hover{
+    background-color: #dbad41;
+    color:black;
+}
+.btn-md:hover{
+    background-color: #dbad41;
+    border-color: #dbad41;
+    color:black;
+}
+
+.card{
+    background-color:#222629;
+}
+
+.card-header{
+    color:#dbad41;
+    font-style: italic;
+}
+
+.card-body{
+    padding: 0 !important;
+}
+
+/*form styling*/
+
+.bg-info{
+    background-color: #dbad41 !important;
+}
+
+.form-control{
+    color:white;
+    background-color: #5f676e;
+    border-color: #dbad41;
+    border-radius: 0;
+}
+
+.form-control:focus{
+    color:white;
+    background-color: #5f676e;
+    border-color: #dbad41;
+}
+
+.btn-form{
+    background-color: #5f676e;
+    color:white;
+}
+
+.btn-form:hover{
+    background-color: transparent;
+    border-color: #5f676e;
+    color: white;
+}
+
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.1rem #dbad41;
+}
+
+/*---------TABLET AND MOBILE SIZE----------*/
+@media all and (max-width: 991px){
+/*---------Nav bar-------------*/
+.navbar-dark .navbar-nav .nav-link {
+    font-size: 1rem;
+}
+
+.container-sm{
+    max-width: 850px;
+} 
+
+/*-----------Header(MOBILE/TABLET)------------*/
+#headerText{
+    width:80%;
+}
+}

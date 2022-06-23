@@ -1,0 +1,34 @@
+<!-- Start of Navigation bar -->
+<nav class="navbar mb-5 navbar-expand-lg navbar-dark fixed-top" id="full-nav">
+    <div class="container-sm">
+        <a href="#"></a>
+        <button class="navbar-toggler ms-auto" data-bs-toggle="collapse" data-bs-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-auto" id="navbar">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item ms-auto">
+                    <%= link_to "HOME", root_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item ms-auto">
+                    <%= link_to "SHOWCASE", posts_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item ms-auto">
+                    <%= link_to "COLLAB", colab_path, class: "nav-link" %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End of Navigation bar -->
