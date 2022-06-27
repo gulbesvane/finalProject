@@ -1,37 +1,40 @@
-<%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="container">
+    <div class="row justify-content-center text-center">
+        <div class=col-8>
+            <%= form_with(model: post, class: "shadow p-3 mb-3 bg-info") do |form| %>
+              <%= render 'shared/errors', obj: @post %>
+              <div class="form-group row">
+                <%= form.label :title, class: "col-1 col-form-label text-light" %>
+                <%= form.text_field :title, class: "form-control shadow text-light", placeholder: "Project title"  %>
+              </div>
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+              <div class="form-group row">
+                <%= form.label :body, class: "col-1 col-form-label text-light" %>
+                <%= form.text_area :body, rows: 10, class: "form-control shadow text-light", placeholder: "Project description" %>
+              </div>
+
+              <div class="form-group row">
+                <%= form.label :tag_list, "Tags", class: "col-1 col-form-label text-light" %>
+                <%= form.text_field :tag_list, class: "form-control shadow text-light", value: @post.tag_list.join(","), placeholder: "Tags (separated by commas)"  %>
+              </div>
+
+              <div class="form-group row">
+                <%= form.label :link, "Link", class: "col-1 col-form-label text-light" %>
+                <%= form.text_field :link, class: "form-control shadow text-light", placeholder: "Add link to a tutorial"  %>
+              </div>
+
+              <div class="form-group mb-3 row justify-content-center text-center">
+                  <div class="col-8">
+                      <%= form.file_field :image, direct_upload: true, accept: 'image/png, image/gif, image/jpeg' %>
+                  </div>
+              </div>
+
+              <div>
+                <%= form.submit value="Add project", class: "btn btn-md btn-form"%>
+              </div>
+            <% end %>
+        </div>
+        <%= link_to 'Cancel and return to project showcase', posts_path, class: "text-muted" %>
     </div>
-  <% end %>
+</div> 
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.label :tag_list, "Tags (separated by commas)" %>
-    <%= form.text_field :tag_list, value: @post.tag_list.join(",") %>
-  </div>
-
-  <div>
-    <%= form.label :link_to_tutorial, style: "display: block" %>
-    <%= form.text_field :link %>
-  </div>
-
-  <div>
-    <%= form.submit value="Add project"%>
-  </div>
-<% end %>
