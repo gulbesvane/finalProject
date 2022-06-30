@@ -14,4 +14,5 @@ class User < ApplicationRecord
                  length: { maximum: 105 },
                  format: { with: VALID_EMAIL_REGEX }
     has_secure_password
+    has_one_attached :image
 end

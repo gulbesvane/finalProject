@@ -1,4 +1,12 @@
 class UsersController < ApplicationController
+
+    def show
+      # find user with the specific id
+      @user = User.find(params[:id])
+      # get all posts associated with the user
+      @posts = @user.posts
+    end
+
     def new
       @user = User.new
     end
@@ -29,7 +37,7 @@ class UsersController < ApplicationController
 
     private
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :email, :password, :image)
     end
 
 end

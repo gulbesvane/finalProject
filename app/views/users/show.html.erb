@@ -1,0 +1,4 @@
+<h1><%= @user.username%>'s profile</h1>
+<div><%= image_tag @user.image, style:"width:150px; height:150px; border-radius:100%;", class: "mx-auto d-block" %></div>
+<h3>Your project posts</h3>
+<%= render 'posts/post' %>

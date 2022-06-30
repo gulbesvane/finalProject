@@ -20,6 +20,11 @@
                 <%= form.password_field :password, class: "form-control shadow text-light", placeholder: "Choose a password"  %>
               </div>
 
+              <div class="form-group row">
+                <%= form.label :image, class: "form-label" %>
+                <%= form.file_field :image, class: "form-field" %>
+              </div>
+
               <div>
                 <%= form.submit( @user.new_record? ? "Sign up!" : "Update account", class: "btn btn-md btn-form") %>
               </div>
