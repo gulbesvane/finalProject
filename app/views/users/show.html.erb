@@ -1,4 +1,7 @@
-<h1><%= @user.username%>'s profile</h1>
+<h1 class="text-center mt-4"><%= @user.username%>'s profile</h1>
 <div><%= image_tag @user.image, style:"width:150px; height:150px; border-radius:100%;", class: "mx-auto d-block" %></div>
-<h3>Your project posts</h3>
+<div class="text-center mt-4">
+  <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-light btn-md"%>
+</div>
+<h3 class="text-center mt-4">Your project posts</h3>
 <%= render 'posts/post' %>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+    # display single user's profile page
     def show
       # find user with the specific id
       @user = User.find(params[:id])
@@ -7,10 +8,12 @@ class UsersController < ApplicationController
       @posts = @user.posts
     end
 
+    # new user signup form
     def new
       @user = User.new
     end
 
+    # edit user's profile
     def edit
       @user = User.find(params[:id])
     end
@@ -19,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       if @user.update(user_params)
         flash[:notice] = "Your account has been updated."
-        redirect_to posts_path
+        redirect_to @user
       else
         render 'edit'
       end
