@@ -11,8 +11,8 @@ class PostsController < ApplicationController
     if params[:tag]
       @posts = Post.tagged_with(params[:tag])
     else
-      #potentially change to views DESC if want to show by popularity
-      @posts = Post.all.order("created_at DESC") 
+      #potentially change to views DESC if want to show by popularity, use will_paginate gem
+      @posts = Post.order("created_at DESC").paginate(page: params[:page], per_page: 2)
     end
   end
 
