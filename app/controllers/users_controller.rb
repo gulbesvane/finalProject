@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
 
     # display single user's profile page
     def show
-      # find user with the specific id
-      @user = User.find(params[:id])
       # get set nr of posts associated with the user to display on a single page
       @posts = @user.posts.order("created_at DESC").paginate(page: params[:page], per_page: 2)
     end
@@ -15,11 +14,9 @@ class UsersController < ApplicationController
 
     # edit user's profile
     def edit
-      @user = User.find(params[:id])
     end
 
     def update
-      @user = User.find(params[:id])
       if @user.update(user_params)
         flash[:notice] = "Your account has been updated."
         redirect_to @user
@@ -31,16 +28,23 @@ class UsersController < ApplicationController
     def create
       @user = User.new(user_params)
       if @user.save
+        # log in user once they have signed in
+        session[:user_id] = @user.id
         flash[:notice] = "Welcome, #{@user.username}! You have successfully created your account!"
-        redirect_to root_path
+        redirect_to @user
       else
-        render 'new'
+        render 'new' , status: :unprocessable_entity
       end
     end
 
     private
     def user_params
       params.require(:user).permit(:username, :email, :password, :image)
+    end
+
+    def set_user
+      # find user with the specific id
+      @user = User.find(params[:id])
     end
 
 end

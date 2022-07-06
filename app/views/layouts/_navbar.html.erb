@@ -10,22 +10,23 @@
                 <li class="nav-item ms-auto">
                     <%= link_to "HOME", root_path, class: "nav-link" %>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                     Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
                 <li class="nav-item ms-auto">
                     <%= link_to "SHOWCASE", posts_path, class: "nav-link" %>
                 </li>
                 <li class="nav-item ms-auto">
                     <%= link_to "COLLAB", colab_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <%= image_tag "user.png", style:"width:30px; height:30px; border-radius:100%;", class: "mx-auto d-block" %></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <% if logged_in?%>
+                          <li><%= link_to "PROFILE INFO", user_path(current_user), class:"dropdown-item" %></li>
+                          <li><%= button_to "LOGOUT", logout_path, class:"dropdown-item", method: :delete, data: {turbo: :false} %></li>
+                        <% else %>
+                          <li><%= link_to "LOGIN", login_path, class:"dropdown-item" %></li>
+                          <li><%= link_to "SIGN-UP", signup_path, class:"dropdown-item" %></li>
+                        <% end %>
+                    </ul>
                 </li>
             </ul>
         </div>

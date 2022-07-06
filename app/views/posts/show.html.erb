@@ -5,8 +5,12 @@
           <div class="col-md-8 mt-4">
               <div class="card text-center shadow mb-5">
                 <div class="card-header">
-                  <%= link_to image_tag(@post.user.image, style:"width:50px; height:50px; border-radius:100%;", class: "mx-auto d-block"), user_path(@post.user)%>
-                  by <%= @post.user.username %>
+                    <% if @post.user.image.attached? %>
+                      <%= link_to image_tag(@post.user.image, style:"width:50px; height:50px; border-radius:100%;", class: "mx-auto d-block"), user_path(@post.user)%>
+                      by <%= @post.user.username %>
+                    <% else %>
+                      <%= image_tag "default_profile.png", style:"width:50px; height:50px; border-radius:100%;", class: "mx-auto d-block" %>
+                    <% end %> 
                 </div>
               <div class="card-body">
                   <div class="imgContainer">

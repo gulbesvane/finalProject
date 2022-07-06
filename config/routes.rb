@@ -11,4 +11,9 @@ Rails.application.routes.draw do
   get 'showcase', to: 'pages#showcase'
   #colab get request send to pages controller colab action
   get 'colab', to: 'pages#colab'
+
+  #login/logout routes
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 end
