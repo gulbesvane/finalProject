@@ -14,8 +14,10 @@
                     <h5 class="card-title mt-2"><%= post.title %></h5>
                     <p class="card-text"><%= truncate(post.body, length:100) %></p>
                     <%= link_to "View", post_path(post), class: "btn btn-outline-light btn-md" %>
-                    <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-light btn-md" %>
-                    <%= link_to "Delete", post_path(post),class: "btn btn-outline-light btn-md", data: { "turbo-method": :delete }, onclick: "return confirm('Are you sure?')" %>
+                    <% if logged_in? && post.user == current_user %>
+                      <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-light btn-md" %>
+                      <%= link_to "Delete", post_path(post),class: "btn btn-outline-light btn-md", data: { "turbo-method": :delete }, onclick: "return confirm('Are you sure?')" %>
+                    <% end %>
                     <p>
                       Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
                     </p>
