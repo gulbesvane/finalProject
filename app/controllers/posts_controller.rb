@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  # call require_login before all actions except index and show
+  before_action :require_login, except: [ :index, :show ]
+  # call require_same_user to check that the logged in user is also the author of the post
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   # GET /posts or /posts.json
   def index
@@ -81,5 +85,12 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :body, :link, :views, :tag_list)
+    end
+
+    def require_same_user
+      if current_user != @post.user
+        flash[:alert] = "You can only edit or delete your own project post."
+        redirect_to @post
+      end
     end
 end
