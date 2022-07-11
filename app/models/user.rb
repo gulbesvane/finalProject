@@ -1,8 +1,8 @@
 class User < ApplicationRecord
     # every user object's parameter email will be downcased before saving into database
     before_save { self.email = email.downcase }
-    # create association where user can have many posts
-    has_many :posts
+    # create association where user can have many posts, delete those dependencies when user is deleted
+    has_many :posts, dependent: :destroy
     # validate username to be unique, present and its length
     validates :username, presence: true,
                  uniqueness: { case_sensitive: false },

@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     ActsAsTaggableOn.remove_unused_tags = true
     @tags = ActsAsTaggableOn::Tag.most_used(10).order("taggings_count DESC")
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
+      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 2)
     else
       #potentially change to views DESC if want to show by popularity, use will_paginate gem
       @posts = Post.order("created_at DESC").paginate(page: params[:page], per_page: 2)
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to posts_url, notice: "Post was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -88,7 +88,8 @@ class PostsController < ApplicationController
     end
 
     def require_same_user
-      if current_user != @post.user
+      # if current user is not the author of the post and is not admin, then redirect
+      if current_user != @post.user && !current_user.admin?
         flash[:alert] = "You can only edit or delete your own project post."
         redirect_to @post
       end
