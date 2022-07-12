@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   get 'tags/:tag', to: 'posts#index', as: :tag
-  resources :posts
+
+  # this will create route posts/2/comments/4
+  resources :posts do
+    resources :comments
+  end
+  
   #pages controller action home
   root 'pages#home'
   # signup get request sned to users controlled action new

@@ -25,6 +25,7 @@ class PostsController < ApplicationController
     # incrments view by 1 when more button is pressed
     @post.views = @post.views + 1
     @post.save
+    @comments = @post.comments.order(created_at: :desc)
   end
 
   # GET /posts/new
@@ -77,7 +78,6 @@ class PostsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
     end

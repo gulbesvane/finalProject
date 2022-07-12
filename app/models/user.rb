@@ -3,6 +3,7 @@ class User < ApplicationRecord
     before_save { self.email = email.downcase }
     # create association where user can have many posts, delete those dependencies when user is deleted
     has_many :posts, dependent: :destroy
+    has_many :comments, dependent: :destroy
     # validate username to be unique, present and its length
     validates :username, presence: true,
                  uniqueness: { case_sensitive: false },

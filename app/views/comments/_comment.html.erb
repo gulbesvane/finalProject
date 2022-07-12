@@ -1,0 +1,10 @@
+<div class="conatiner text-light" style="border: 1px solid orange; padding: 1em; margin: 1em;">
+    <%= comment.user.email %> <br />
+    <p class="card-text">
+      <%= comment.body%>
+    </p>
+    <span>Posted <%= time_ago_in_words(comment.created_at) %></span>
+    <% if logged_in? && (comment.user == current_user || current_user.admin?) %>
+      <%= button_to "Delete", [ post, comment ], class: "btn btn-outline-light btn-md", method: :delete %>
+    <% end %>
+</div>
