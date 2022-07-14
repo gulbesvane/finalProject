@@ -10,15 +10,23 @@ import "@rails/actiontext"
 
 function changeNavColour() {
     var navbar = document.getElementById("full-nav");
+    var dropdown1 = document.getElementById("dropdown-menu1");
+    var dropdown2 = document.getElementById("dropdown-menu2");
     var sticky = navbar.offsetTop;
     // if y coordinate is more than location of navbar+30 pixels, then add sticky class to navbar
     if (window.pageYOffset > (sticky)) {
-        navbar.classList.add("sticky")
+        navbar.classList.add("sticky");
+        dropdown1.classList.add("sticky");
+        dropdown2.classList.add("sticky");
     } else {
         navbar.classList.remove("sticky");
+        dropdown1.classList.remove("sticky");
+        dropdown2.classList.add("sticky");
     }
 }
 
 window.addEventListener("scroll", () => {
     changeNavColour();
 });
+
+// <script>data-turbolinks-eval=false</script>

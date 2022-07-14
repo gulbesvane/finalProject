@@ -64,6 +64,22 @@ li{
 .navbar-nav li{
     padding-right: .7rem;
 }
+
+.dropdown-menu{
+    background-color: #222629;
+}
+
+.dropdown-item{
+    color:#6c757d;
+    font-size: 1rem;
+    letter-spacing: .1rem;
+}
+
+.dropdown-item:hover{
+    background-color: transparent;
+    color:white;
+}
+
 .sticky{
     background-color:#dbad41;
 }
@@ -244,8 +260,18 @@ li{
 /*---------TABLET AND MOBILE SIZE----------*/
 @media all and (max-width: 991px){
 /*---------Nav bar-------------*/
+.navbar{
+    background-color: #222629;
+}
 .navbar-dark .navbar-nav .nav-link {
     font-size: 1rem;
+}
+
+.dropdown {
+    text-align: end;
+}
+.dropdown-item{
+    text-align: end;
 }
 
 .container-sm{
