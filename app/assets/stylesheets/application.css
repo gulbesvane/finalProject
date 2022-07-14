@@ -169,6 +169,11 @@ li{
     padding: 0 !important;
 }
 
+.full-img {
+    object-fit: contain;
+    height: 320px;
+    width: 100%;
+    }
 /*form styling*/
 
 .bg-info{

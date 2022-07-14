@@ -12,7 +12,11 @@
                 </div>
               <div class="card-body">
                   <div class="imgContainer">
-                      <%# <img class="card-img-top img-fluid" src="<%= (url_for(post.image)) %>
+                      <% if @post.image.attached? %>
+                        <%= image_tag @post.image, class: "card-img-top img-fluid full-img" %>
+                      <% else %>
+                        <%= image_tag "default_profile.png", class: "card-img-top full-img" %>
+                      <% end %>
                       <div class="overlay"></div>
                   </div>
                   <h5 class="card-title mt-2"><%= @post.title %></h5>

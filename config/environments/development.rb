@@ -69,5 +69,5 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # switch to mini magick instead of vips
-  # config.active_storage.variant_processor = :mini_magick
+  #config.active_storage.variant_processor = :mini_magick
 end
