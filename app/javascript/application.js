@@ -22,5 +22,3 @@ function changeNavColour() {
 window.addEventListener("scroll", () => {
     changeNavColour();
 });
-
-// <script>data-turbolinks-eval=false</script>
