@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row justify-content-center text-center">
+        <div class=col-8>
+            <%= form_with(model: collab, class: "shadow p-3 mb-3 bg-info") do |form| %>
+              <%= render 'shared/errors', obj: @collab %>
+              <div class="form-group row">
+                <%= form.label :title, class: "col-1 col-form-label text-light" %>
+                <%= form.text_field :title, class: "form-control shadow text-light", placeholder: "Collab title"  %>
+              </div>
+
+              <div class="form-group row">
+                <%= form.label :body, class: "col-1 col-form-label text-light" %>
+                <%= form.text_area :body, rows: 10, class: "form-control shadow text-light", placeholder: "Collab description" %>
+              </div>
+
+              <% if false %>
+              <div class="form-group row">
+                <%= form.label :tag_list, "Tags", class: "col-1 col-form-label text-light" %>
+                <%= form.text_field :tag_list, class: "form-control shadow text-light", value: @post.tag_list.join(","), placeholder: "Tags (separated by commas)"  %>
+              </div>
+              <% end %>
+
+              <div class="form-group row">
+                <%= form.label :participants, "Nr of participants", class: "col-1 col-form-label text-light" %>
+                <%= form.number_field :participants,  in: 1.0..20.0, step: 1.0, class: "form-control shadow text-light", placeholder: "How many people in collab?"  %>
+              </div>
+
+              <div class="form-group mb-3 row justify-content-center text-center">
+                  <div class="col-8">
+                      <%= form.file_field :image, direct_upload: true %>
+                  </div>
+              </div>
+
+              <div>
+                <%= form.submit value="Add project", class: "btn btn-md btn-form"%>
+              </div>
+            <% end %>
+        </div>
+        <%= link_to 'Cancel and return to collabs page', collabs_path, class: "text-muted" %>
+    </div>
+</div> 
+
+
+
+
+

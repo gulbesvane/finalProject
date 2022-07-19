@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_11_130525) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_072348) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -47,6 +47,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_130525) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "collabs", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.integer "participants", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -99,6 +107,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_130525) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "user_collabs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "collab_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collab_id"], name: "index_user_collabs_on_collab_id"
+    t.index ["user_id"], name: "index_user_collabs_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -113,4 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_11_130525) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "user_collabs", "collabs"
+  add_foreign_key "user_collabs", "users"
 end

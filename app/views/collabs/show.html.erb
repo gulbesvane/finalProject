@@ -1,0 +1,38 @@
+<div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-8 mt-4">
+              <div class="card text-center shadow mb-5">
+                <div class="card-header">
+                    <% if @collab.user.image.attached? %>
+                      <%= link_to image_tag(@collab.user.image, style:"width:50px; height:50px; border-radius:100%;", class: "mx-auto d-block"), user_path(@collab.user)%>
+                      by <%= @collab.user.username %>
+                    <% else %>
+                      <%= image_tag "default_profile.png", style:"width:50px; height:50px; border-radius:100%;", class: "mx-auto d-block" %>
+                    <% end %> 
+                </div>
+                <div class="card-body">
+                  <div class="imgContainer">
+                      <% if @collab.image.attached? %>
+                        <%= image_tag @collab.image, class: "card-img-top img-fluid full-img" %>
+                      <% else %>
+                        <%= image_tag "default_profile.png", class: "card-img-top full-img" %>
+                      <% end %>
+                      <div class="overlay"></div>
+                  </div>
+                  <h5 class="card-title mt-2"><%= @collab.title %></h5>
+                  <p class="card-text"><%= truncate(@collab.body, length:100) %></p>
+                  <% if logged_in? && ( @collab.user == current_user || current_user.admin? ) %>
+                    <%= link_to "Edit", edit_collab_path(@collab), class: "btn btn-outline-light btn-md" %>
+                    <%= button_to 'DELETE', collab_path(@collab),class: "btn btn-outline-light btn-md", method: :delete %>
+                    <%# <%= link_to "Delete", post_path(@post),class: "btn btn-outline-light btn-md", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %> 
+                  <% end %>
+                </div>
+              </div>
+          </div>
+      </div>
+</div>
+
+<div>
+  <%= link_to "Back to all collabs", collabs_path %>
+</div>
+

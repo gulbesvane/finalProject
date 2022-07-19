@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :collabs
+  
   get 'tags/:tag', to: 'posts#index', as: :tag
 
   # this will create route posts/2/comments/4
@@ -14,8 +16,6 @@ Rails.application.routes.draw do
   resources :users, except: [:new]
   #showcase get request send to pages controller action showcase
   get 'showcase', to: 'pages#showcase'
-  #colab get request send to pages controller colab action
-  get 'colab', to: 'pages#colab'
 
   #login/logout routes
   get 'login', to: 'sessions#new'
