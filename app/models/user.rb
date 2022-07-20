@@ -5,7 +5,7 @@ class User < ApplicationRecord
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
     
-    has_many :user_collabs
+    has_many :user_collabs, :dependent => :destroy
     has_many :collabs, through: :user_collabs
     # validate username to be unique, present and its length
     validates :username, presence: true,

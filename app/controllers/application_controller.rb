@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   # make current user method available in views
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :logged_in?, :is_member?, :owner_username
+
+  def is_member?
+    # check if current user is a member of current collab
+    @collab.users.exists?(current_user.id)
+  end
+
   
   # return information on the current user
   def current_user

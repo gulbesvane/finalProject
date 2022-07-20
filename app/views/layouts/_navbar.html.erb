@@ -16,11 +16,17 @@
                         <% if logged_in?%>
                           <li><%= link_to "ADD PROJECT", new_post_path, class:"dropdown-item "  %></li>
                           <% end %>
-                          <li><%= link_to "VIEW PROJECTS", posts_path, class:"dropdown-item"  %></li>
+                          <li><%= link_to "ALL PROJECTS", posts_path, class:"dropdown-item"  %></li>
                     </ul>
                 </li>
-                <li class="nav-item ms-auto">
-                    <%= link_to "COLLAB", collabs_path, class: "nav-link" %>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">COLLABS</a>
+                    <ul class="dropdown-menu" id="dropdown-menu2" aria-labelledby="navbarDropdown">
+                        <% if logged_in?%>
+                          <li><%= link_to "ADD COLLAB", new_collab_path, class:"dropdown-item "  %></li>
+                          <% end %>
+                          <li><%= link_to "ALL COLLABS", collabs_path, class:"dropdown-item"  %></li>
+                    </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <% if logged_in?%>
@@ -31,7 +37,7 @@
                     <% else %>
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <%= image_tag "user.png", style:"width:30px; height:30px; border-radius:100%;", class: "ms-auto" %></a>
                     <% end %>
-                    <ul class="dropdown-menu" id="dropdown-menu2" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" id="dropdown-menu3" aria-labelledby="navbarDropdown">
                         <% if logged_in?%>
                           <li><%= link_to "PROFILE INFO", user_path(current_user), class:"dropdown-item" %></li>
                           <li><%= button_to "LOGOUT", logout_path, class:"dropdown-item", method: :delete, data: {turbo: :false} %></li>

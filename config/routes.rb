@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :collabs
+  resources :collabs do
+    member do
+      get 'join'
+      get 'leave'
+    end
+  end
   
   get 'tags/:tag', to: 'posts#index', as: :tag
 

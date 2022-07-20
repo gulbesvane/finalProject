@@ -4,7 +4,7 @@ class Collab < ApplicationRecord
     validates :body, presence: true, length: { minimum: 25, maximum: 1000}
     validate :validate_image_attachement
 
-    has_many :user_collabs 
+    has_many :user_collabs, :dependent => :destroy
     has_many :users, through: :user_collabs
 
     has_one_attached :image, dependent: :destroy

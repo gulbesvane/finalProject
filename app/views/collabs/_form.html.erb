@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center text-center">
         <div class=col-8>
-            <%= form_with(model: collab, class: "shadow p-3 mb-3 bg-info") do |form| %>
+            <%= form_with(model: @collab, class: "shadow p-3 mb-3 bg-info") do |form| %>
               <%= render 'shared/errors', obj: @collab %>
               <div class="form-group row">
                 <%= form.label :title, class: "col-1 col-form-label text-light" %>
@@ -32,7 +32,7 @@
               </div>
 
               <div>
-                <%= form.submit value="Add project", class: "btn btn-md btn-form"%>
+                <%= form.submit value="Create collab", class: "btn btn-md btn-form"%>
               </div>
             <% end %>
         </div>

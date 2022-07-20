@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     def show
       # get set nr of posts associated with the user to display on a single page
       @posts = @user.posts.order("created_at DESC").paginate(page: params[:page], per_page: 2)
+      @collabs = @user.collabs.order("created_at DESC").paginate(page: params[:page], per_page: 2)
     end
 
     # new user signup form

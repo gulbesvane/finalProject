@@ -1,5 +1,5 @@
 class CollabsController < ApplicationController
-  before_action :set_collab, only: %i[ show edit update destroy ]
+  before_action :set_collab, only: %i[ show edit update destroy join leave ]
   before_action :require_login, except: [ :index, :show ]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
@@ -24,9 +24,10 @@ class CollabsController < ApplicationController
   # POST /collabs or /collabs.json
   def create
     @collab = Collab.new(collab_params)
-
+    @collab.owner = current_user.id
     respond_to do |format|
       if @collab.save
+        UserCollab.create(user_id: current_user.id, collab_id: @collab.id)
         format.html { redirect_to collab_url(@collab), notice: "Collab was successfully created." }
         format.json { render :show, status: :created, location: @collab }
       else
@@ -56,6 +57,19 @@ class CollabsController < ApplicationController
     redirect_to collabs_path, status: :see_other
   end
 
+  def join
+    UserCollab.create(user_id: current_user.id, collab_id: @collab.id)
+    flash[:notice] = "Good luck, you have joined this collab!"
+    redirect_to @collab
+  end
+  
+  def leave
+    user = UserCollab.find_by(user_id: current_user.id, collab_id: @collab.id)
+    user.destroy
+    flash[:notice] = "You have left this collab."
+    redirect_to @collab
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collab
@@ -64,12 +78,12 @@ class CollabsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def collab_params
-      params.require(:collab).permit(:title, :body, :participants, :integer, :image)
+      params.require(:collab).permit(:title, :body, :participants, :image, :owner)
     end
 
     def require_same_user
       # if current user is not the author of the collab and is not admin, then redirect
-      if current_user != @collab.user && !current_user.admin?
+      if current_user.id != @collab.owner && !current_user.admin?
         flash[:alert] = "You can only edit or delete your own collab projects."
         redirect_to @collab
       end
