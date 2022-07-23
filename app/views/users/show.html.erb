@@ -6,6 +6,7 @@
     <%= image_tag "default_profile.png", style:"width:100px; height:115px; border-radius:100%;", class: "mx-auto d-block" %>
   <% end %>  
 </div>
+<h2 class="text-center mt-4" >email: <%= @user.email %></h2>
 <% if logged_in? && ( @user == current_user || current_user.admin? )%>
   <div class="text-center mt-4">
     <%= link_to "Edit profile", edit_user_path(@user), class: "btn btn-outline-light btn-md"%>

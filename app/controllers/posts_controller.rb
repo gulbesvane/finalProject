@@ -11,7 +11,9 @@ class PostsController < ApplicationController
     ActsAsTaggableOn.force_lowercase = true
     # remove all unused tag objects
     ActsAsTaggableOn.remove_unused_tags = true
-    @tags = ActsAsTaggableOn::Tag.most_used(10).order("taggings_count DESC")
+    
+    @tags = Post.tags_on(:tags).most_used(10).order("taggings_count DESC")
+    # @tags = ActsAsTaggableOn::Tag
     if params[:tag]
       @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 2)
     else

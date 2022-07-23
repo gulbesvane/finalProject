@@ -13,12 +13,10 @@
                 <%= form.text_area :body, rows: 10, class: "form-control shadow text-light", placeholder: "Collab description" %>
               </div>
 
-              <% if false %>
               <div class="form-group row">
-                <%= form.label :tag_list, "Tags", class: "col-1 col-form-label text-light" %>
-                <%= form.text_field :tag_list, class: "form-control shadow text-light", value: @post.tag_list.join(","), placeholder: "Tags (separated by commas)"  %>
+                <%= form.label :skill_list, "Skills", class: "col-1 col-form-label text-light" %>
+                <%= form.text_field :skill_list, class: "form-control shadow text-light", value: @collab.skill_list.join(","), placeholder: "Skills (separated by commas)"  %>
               </div>
-              <% end %>
 
               <div class="form-group row">
                 <%= form.label :participants, "Nr of participants", class: "col-1 col-form-label text-light" %>

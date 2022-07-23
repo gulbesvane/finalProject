@@ -5,7 +5,18 @@ class CollabsController < ApplicationController
 
   # GET /collabs or /collabs.json
   def index
-    @collabs = Collab.order("created_at DESC").paginate(page: params[:page], per_page: 2)
+    # force all tags to be saved lowercase
+    ActsAsTaggableOn.force_lowercase = true
+    # remove all unused tag objects
+    ActsAsTaggableOn.remove_unused_tags = true
+
+    @skills = Collab.tags_on(:skills).most_used(10).order("taggings_count DESC")
+    if params[:skill]
+      @collabs = Collab.tagged_with(params[:skill]).paginate(page: params[:page], per_page: 2)
+    else
+      #potentially change to views DESC if want to show by popularity, use will_paginate gem
+      @collabs = Collab.order("created_at DESC").paginate(page: params[:page], per_page: 2)
+    end
   end
 
   # GET /collabs/1 or /collabs/1.json
@@ -78,7 +89,7 @@ class CollabsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def collab_params
-      params.require(:collab).permit(:title, :body, :participants, :image, :owner)
+      params.require(:collab).permit(:title, :body, :participants, :image, :owner, :skill_list)
     end
 
     def require_same_user

@@ -24,7 +24,6 @@
                   <% if logged_in? && ( @post.user == current_user || current_user.admin? ) %>
                     <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-light btn-md" %>
                     <%= button_to 'DELETE', post_path(@post),class: "btn btn-outline-light btn-md", method: :delete %>
-                    <%# <%= link_to "Delete", post_path(@post),class: "btn btn-outline-light btn-md", data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %> 
                   <% end %>
                   <p>
                     Tags: <%= raw @post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>

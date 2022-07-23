@@ -12,11 +12,23 @@ class User < ApplicationRecord
                  uniqueness: { case_sensitive: false },
                  length: { minimum: 3, maximum: 25 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    # validate email to be present, unique, length and valid format
+    # validate email to be present, unique, length and valid format using active record validation
     validates :email, presence: true,
                  uniqueness: { case_sensitive: false },
                  length: { maximum: 105 },
                  format: { with: VALID_EMAIL_REGEX }
+    validates :password, format: { with: /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/, message: " must be min 8 characters, at least one letter and one number!" }
+    validate :validate_image_attachement
+
     has_secure_password
     has_one_attached :image
+
+    private
+    def validate_image_attachement
+      return unless image.attached?
+
+      unless image.content_type.in?(%w[image/jpeg image/png image/jpg])
+        errors.add(:attachments ,"You can only attach .jpeg .jpg or .png files")
+      end
+    end
 end

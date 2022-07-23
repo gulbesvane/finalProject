@@ -1,5 +1,9 @@
 <h1>All collabs</h1>
 
+<% @skills.each do |skill| %>
+<h1><%= link_to skill, "/skill/#{skill}" %></h1>
+<% end %> 
+
 <div class="flickr_pagination">
   <%= will_paginate @collabs, :container => false %>
 </div>

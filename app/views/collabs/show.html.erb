@@ -20,11 +20,13 @@
                     <%= link_to "Edit", edit_collab_path(@collab), class: "btn btn-outline-light btn-md" %>
                     <%= button_to 'DELETE', collab_path(@collab),class: "btn btn-outline-light btn-md", method: :delete %>
                   <% end %>
-                  <% if @collab.owner != current_user.id %>
-                    <% if is_member? %> 
-                      <%= link_to 'leave', leave_collab_path(@collab), class: "btn btn-outline-light btn-md" %>
-                    <% else %>
-                      <%= link_to 'join', join_collab_path(@collab), class: "btn btn-outline-light btn-md" %>
+                  <% if logged_in? %>
+                    <% if @collab.owner != current_user.id %>
+                      <% if is_member? %> 
+                        <%= link_to 'leave', leave_collab_path(@collab), class: "btn btn-outline-light btn-md" %>
+                      <% else %>
+                        <%= link_to 'join', join_collab_path(@collab), class: "btn btn-outline-light btn-md" %>
+                      <% end %>
                     <% end %>
                   <% end %>
                 </div>

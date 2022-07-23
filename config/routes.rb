@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     end
   end
   
+  # route posts/tag/....
   get 'tags/:tag', to: 'posts#index', as: :tag
+  # route collabs/skill/....
+  get 'skill/:skill', to: 'collabs#index', as: :skill
 
   # this will create route posts/2/comments/4
   resources :posts do
