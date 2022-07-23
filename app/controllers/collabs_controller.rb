@@ -71,6 +71,9 @@ class CollabsController < ApplicationController
   def join
     UserCollab.create(user_id: current_user.id, collab_id: @collab.id)
     flash[:notice] = "Good luck, you have joined this collab!"
+    # reduce participants count by 1 when someone joins
+    @collab.participants = @collab.participants - 1
+    @collab.save
     redirect_to @collab
   end
   
@@ -78,6 +81,8 @@ class CollabsController < ApplicationController
     user = UserCollab.find_by(user_id: current_user.id, collab_id: @collab.id)
     user.destroy
     flash[:notice] = "You have left this collab."
+    @collab.participants = @collab.participants + 1
+    @collab.save
     redirect_to @collab
   end
 
@@ -99,4 +104,5 @@ class CollabsController < ApplicationController
         redirect_to @collab
       end
     end
+
 end

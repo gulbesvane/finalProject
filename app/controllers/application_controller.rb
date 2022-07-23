@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
     # check if current user is a member of current collab
     @collab.users.exists?(current_user.id)
   end
-
   
   # return information on the current user
   def current_user

@@ -17,7 +17,7 @@ class User < ApplicationRecord
                  uniqueness: { case_sensitive: false },
                  length: { maximum: 105 },
                  format: { with: VALID_EMAIL_REGEX }
-    validates :password, format: { with: /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/, message: " must be min 8 characters, at least one letter and one number!" }
+    # validates :password, format: { with: /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/, message: " must be min 8 characters, at least one letter and one number!" }
     validate :validate_image_attachement
 
     has_secure_password
