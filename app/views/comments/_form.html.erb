@@ -1,7 +1,12 @@
 <%= form_with(model: [ post, post.comments.build ], class: "shadow p-3 mb-3 bg-info") do |form| %>
+<% if !parent.nil? %>
+  <input type="hidden" name="comment[parent_id]" value ="<%= parent.id %>">
+<% end %>
 <div class="form-group">
-  <%= form.rich_text_area :body, class: "form-control shadow text-light"%>
+  <%= form.text_area :content, class: "form-control shadow text-light"%>
   <%= form.submit "Add comment", class: "btn btn-md btn-form"%>
 </div>
 <% end %>
+
+
 

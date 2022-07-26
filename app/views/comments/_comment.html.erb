@@ -1,10 +1,33 @@
-<div class="conatiner text-light" style="border: 1px solid orange; padding: 1em; margin: 1em;">
-    <%= comment.user.email %> <br />
+<div class="conatiner text-light" style=" border-top: 1px solid orange; padding: 1em; margin: 1em;">
+    <% if comment.user.image.attached? %>
+      <%= image_tag comment.user.image, style:"width:50px; height:50px; border-radius:100%;", class: "mx-auto d-block" %>
+    <% else %>
+      <%= image_tag "default_profile.png", style:"width:30px; height:35px; border-radius:100%;", class: "mx-auto d-block" %>
+    <% end %>  
+    <%= comment.user.username %> <br />
     <p class="card-text">
-      <%= comment.body%>
+      <%= comment.content %>
     </p>
     <span>Posted <%= time_ago_in_words(comment.created_at) %></span>
     <% if logged_in? && (comment.user == current_user || current_user.admin?) %>
-      <%= button_to "Delete", [ post, comment ], class: "btn btn-outline-light btn-md", method: :delete %>
+      <%= button_to "Delete", [ @post, comment ], class: "btn btn-outline-light btn-md", method: :delete %>
     <% end %>
 </div>
+<a href="#" class="comment-form-display">Reply</a>
+<div class="comment-form">
+  <%= render partial: "comments/form", locals: { post: comment.post, parent: comment } %>
+</div>
+
+<div class="sub-comment">
+  <%= render comment.comments.order(id: :desc) %>
+</div>
+
+
+<script>
+  document.querySelectorAll('.comment-form-display').forEach((el) => {
+    el.addEventListener('click', (ev) =>{
+      ev.preventDefault();
+      el.nextElementSibling.style = 'display: block;'
+    })
+  })
+</script>

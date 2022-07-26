@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
     # create association between post and a single user
     belongs_to :user
+    has_many :comments, dependent: :destroy
     
     acts_as_taggable_on :tags
     #validate that a title and description are present and with a min and max lengths, before saving an article
@@ -8,9 +9,8 @@ class Post < ApplicationRecord
     validates :body, presence: true, length: { minimum: 25, maximum: 1000}
     validate :validate_image_attachement
 
-    has_many :comments, dependent: :destroy
+  
     has_one_attached :image, dependent: :destroy
-
     private
 
     def validate_image_attachement

@@ -1,7 +1,26 @@
-<div class="container">
     <% @posts.each do |post| %>
-        <div class="row justify-content-center">
-            <div class="col-md-8 mt-4">
+            <div class="col-lg-4 col-md-6 item-container">
+              <% if post.image.attached? %>
+                <%= image_tag post.image, class: "item-img" %>
+              <% else %>
+                <%= image_tag "default_profile.png", class: "item-img" %>
+              <% end %>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <h5>by <%= link_to post.user.username, user_path(post.user) %></h5>
+                  <h3><%= post.title %></h3>
+                  <p class="item-text"><%= truncate(post.body, length:100) %></p>
+                  <p class="item-text">
+                    Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+                  </p>
+                  <%= link_to "View", post_path(post), class: "btn btn-outline-light btn-md" %>
+                </div>
+              </div>     
+            </div>
+
+
+
+              <% if false%>
                 <div class="card text-center shadow mb-5">
                   <div class="card-header">
                     by <%= link_to post.user.username, user_path(post.user) %>
@@ -18,22 +37,15 @@
                     <h5 class="card-title mt-2"><%= post.title %></h5>
                     <p class="card-text"><%= truncate(post.body, length:100) %></p>
                     <%= link_to "View", post_path(post), class: "btn btn-outline-light btn-md" %>
-                    <% if logged_in? && (post.user == current_user || current_user.admin?) %>
-                      <%= link_to "Edit", edit_post_path(post), class: "btn btn-outline-light btn-md" %>
-                      <%= button_to 'DELETE', post_path(post),class: "btn btn-outline-light btn-md", method: :delete %>
-                      <%# <%= link_to "Delete", post_path(post),class: "btn btn-outline-light btn-md", data: { "turbo-method": :delete }, onclick: "return confirm('Are you sure?')" %>
-                    <% end %>
                     <p>
                       Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
                     </p>
                     <h5 class="card-title mt-2"> Views: <%= post.views %></h5>
-                    <h5 class="card-title mt-2"> Link to tutorial: <%= post.link %></h5>
                 </div>
                 <div class="card-footer text-muted">
                     <small>Created <%= time_ago_in_words(post.created_at) %> ago</small>
                 </div>
                 </div>
-            </div>
-        </div>
+              <% end %>
     <%end%>
-</div>
+

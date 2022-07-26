@@ -20,7 +20,7 @@
                       <div class="overlay"></div>
                   </div>
                   <h5 class="card-title mt-2"><%= @post.title %></h5>
-                  <p class="card-text"><%= truncate(@post.body, length:100) %></p>
+                  <p class="card-text"><%= @post.body %></p>
                   <% if logged_in? && ( @post.user == current_user || current_user.admin? ) %>
                     <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-light btn-md" %>
                     <%= button_to 'DELETE', post_path(@post),class: "btn btn-outline-light btn-md", method: :delete %>
@@ -34,17 +34,20 @@
               <div class="card-footer text-muted">
                   <small>Created <%= time_ago_in_words(@post.created_at) %> ago</small>
               </div>
-              <div class="conatiner">
-                <%= render 'comments/form', post: @post %>
-                <% @comments.each do |comment| %>
-                  <%= render 'comments/comment', post: @post, comment: comment %>
-                <% end %>
-              </div>
-              </div>
+          </div>
+          <div>
+          <h3>Comments</h3>
+          <%# to improve performance do eager loading for user to preload data into memory instead of multiple request to database .includes(:user) %>
+          <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+          <%= render partial: "comments/form", locals: { post: @post, parent: nil } %>
+          <%= link_to "Back to project showcase", posts_path %>
           </div>
       </div>
 </div>
 
-<div>
-  <%= link_to "Back to project showcase", posts_path %>
-</div>
+
+
+
+
+
+

@@ -5,16 +5,19 @@ Rails.application.routes.draw do
       get 'leave'
     end
   end
+
   
   # route posts/tag/....
   get 'tags/:tag', to: 'posts#index', as: :tag
   # route collabs/skill/....
   get 'skill/:skill', to: 'collabs#index', as: :skill
 
-  # this will create route posts/2/comments/4
+  # route post/nr/comment/nr
   resources :posts do
     resources :comments
   end
+
+
   
   #pages controller action home
   root 'pages#home'

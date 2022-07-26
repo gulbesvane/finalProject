@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # call require_same_user to check that the logged in user is also the author of the post
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
+
   # GET /posts or /posts.json
   def index
     # force all tags to be saved lowercase
@@ -15,10 +16,10 @@ class PostsController < ApplicationController
     @tags = Post.tags_on(:tags).most_used(10).order("taggings_count DESC")
     # @tags = ActsAsTaggableOn::Tag
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 2)
+      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 20)
     else
       #potentially change to views DESC if want to show by popularity, use will_paginate gem
-      @posts = Post.order("created_at DESC").paginate(page: params[:page], per_page: 2)
+      @posts = Post.order("created_at DESC").paginate(page: params[:page], per_page: 20)
     end
   end
 
@@ -27,7 +28,6 @@ class PostsController < ApplicationController
     # incrments view by 1 when more button is pressed
     @post.views = @post.views + 1
     @post.save
-    @comments = @post.comments.order(created_at: :desc)
   end
 
   # GET /posts/new
@@ -93,4 +93,5 @@ class PostsController < ApplicationController
         redirect_to @post
       end
     end
+
 end

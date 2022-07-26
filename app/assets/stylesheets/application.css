@@ -24,8 +24,11 @@
     color:#242424;
     text-align: center;
 }
-h1, h2, h3, h5{
+h1, h2, h3{
     color:#dbad41;
+}
+h5{
+    color: #6c757d;
 }
 h2{
     letter-spacing: .1rem;
@@ -41,6 +44,14 @@ p{
 li{
     list-style: none;
     color:#e22929;
+}
+
+a{
+    text-decoration: none;
+    color: #6c757d;
+}
+a:hover{
+    color:#aaaaaa;
 }
 /*--------Navbar--------*/
 .navbar{
@@ -256,6 +267,51 @@ li{
       margin-right: 1em; }
     .flickr_pagination .next_page {
       margin-left: 1em; }
+
+      .item-container {
+        position: relative;
+        margin-bottom: 1vw;
+      }
+      
+      .item-img {
+        object-fit: contain;
+        height: 400px;
+        width: 100%;
+        /* width: 100%;
+        height: auto; */
+      }
+      
+      .overlay {
+        background-color: #000000c4;
+        opacity: 0;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+        transition: 1s ease-in-out;
+        position: absolute;
+      }
+      .overlay:hover {
+        opacity: 1;
+      }
+      .overlay-content {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+.sub-comment{
+    padding-left: 60px;
+}
+.comment-form{
+    display:none;
+}
+      
 
 /*---------TABLET AND MOBILE SIZE----------*/
 @media all and (max-width: 991px){
