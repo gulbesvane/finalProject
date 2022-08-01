@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy]
   # call require_login before all actions except index and show
-  before_action :require_login, except: [ :index, :show ]
+  before_action :require_login, except: [ :index, :show]
   # call require_same_user to check that the logged in user is also the author of the post
   before_action :require_same_user, only: [:edit, :update, :destroy]
 

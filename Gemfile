@@ -77,3 +77,6 @@ gem 'acts-as-taggable-on', "~> 9.0", github: "mbleigh/acts-as-taggable-on"
 # gem used to paginate
 gem 'will_paginate', '~> 3.3'
 
+# gem for like button
+gem 'acts_as_votable'
+

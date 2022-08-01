@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #pages controller action home
+  root 'welcome#index'
+
   resources :collabs do
     member do
       get 'join'
@@ -9,17 +12,18 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
   # route collab/nr/message/nr
   resources :collabs do
     resources :messages
   end
+
   # route posts/tag/....
   get 'tags/:tag', to: 'posts#index', as: :tag
   # route collabs/skill/....
   get 'skill/:skill', to: 'collabs#index', as: :skill
 
-  #pages controller action home
-  root 'pages#home'
+
   # signup get request sned to users controlled action new
   get 'signup', to: 'users#new'
   # create all routes for users except nes as it is defined already

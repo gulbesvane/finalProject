@@ -1,12 +1,11 @@
 class User < ApplicationRecord
+    acts_as_voter
     # every user object's parameter email will be downcased before saving into database
     before_save { self.email = email.downcase }
     # create association where user can have many posts, delete those dependencies when user is deleted
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
     has_many :messages, dependent: :destroy
-
-    
     has_many :user_collabs, :dependent => :destroy
     has_many :collabs, through: :user_collabs
     # validate username to be unique, present and its length
