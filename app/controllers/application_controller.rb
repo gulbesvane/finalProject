@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  # make current user method available in views
+  # make current these methods available in views
   helper_method :current_user, :logged_in?, :is_member?, :owner_username
 
   def is_member?

@@ -7,6 +7,8 @@ class Collab < ApplicationRecord
 
     has_many :user_collabs, :dependent => :destroy
     has_many :users, through: :user_collabs
+    has_many :messages, dependent: :destroy
+  
 
     has_one_attached :image, dependent: :destroy
 

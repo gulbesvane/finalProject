@@ -37,9 +37,9 @@
           </div>
           <div>
           <h3>Comments</h3>
+          <%= render partial: "comments/form", locals: { post: @post, parent: nil } %>
           <%# to improve performance do eager loading for user to preload data into memory instead of multiple request to database .includes(:user) %>
           <%= render @post.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
-          <%= render partial: "comments/form", locals: { post: @post, parent: nil } %>
           <%= link_to "Back to project showcase", posts_path %>
           </div>
       </div>

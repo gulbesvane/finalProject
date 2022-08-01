@@ -28,6 +28,12 @@
                   <% end %>
                 </div>
               </div>
+            <%= if logged_in? && collab.users.exists?(current_user.id) %>
+              <h3>Chat</h3>
+              <%= render partial: "messages/form", locals: { collab: @collab, parent: nil } %>
+              <%# to improve performance do eager loading for user to preload data into memory instead of multiple request to database .includes(:user) %>
+              <%= render @collab.messages.where(parent_id: nil).includes(:user).order(id: :desc) %>
+            <% end %>
           </div>
       </div>
 </div>

@@ -5,20 +5,19 @@ Rails.application.routes.draw do
       get 'leave'
     end
   end
-
-  
+  # route post/nr/comments nested route
+  resources :posts do
+    resources :comments
+  end
+  # route collab/nr/message/nr
+  resources :collabs do
+    resources :messages
+  end
   # route posts/tag/....
   get 'tags/:tag', to: 'posts#index', as: :tag
   # route collabs/skill/....
   get 'skill/:skill', to: 'collabs#index', as: :skill
 
-  # route post/nr/comment/nr
-  resources :posts do
-    resources :comments
-  end
-
-
-  
   #pages controller action home
   root 'pages#home'
   # signup get request sned to users controlled action new

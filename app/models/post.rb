@@ -4,12 +4,11 @@ class Post < ApplicationRecord
     has_many :comments, dependent: :destroy
     
     acts_as_taggable_on :tags
-    #validate that a title and description are present and with a min and max lengths, before saving an article
+    #validate that a title and description are present and with a min and max lengths, before saving the post
     validates :title, presence: true, length: { minimum: 5, maximum: 150}
     validates :body, presence: true, length: { minimum: 25, maximum: 1000}
     validate :validate_image_attachement
 
-  
     has_one_attached :image, dependent: :destroy
     private
 

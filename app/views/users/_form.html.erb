@@ -2,8 +2,8 @@
 <div class="container">
     <div class="row justify-content-center text-center">
         <div class=col-8>
-          <%= render 'shared/errors', obj: @user %>
             <%= form_with(model: @user, class: "shadow p-3 mb-3 bg-info") do |form| %>
+              <%= render 'shared/errors', obj: @user %>
               
               <div class="form-group row">
                 <%= form.label :username, class: "col-1 col-form-label text-light" %>

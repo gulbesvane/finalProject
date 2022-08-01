@@ -4,6 +4,8 @@ class User < ApplicationRecord
     # create association where user can have many posts, delete those dependencies when user is deleted
     has_many :posts, dependent: :destroy
     has_many :comments, dependent: :destroy
+    has_many :messages, dependent: :destroy
+
     
     has_many :user_collabs, :dependent => :destroy
     has_many :collabs, through: :user_collabs
@@ -17,10 +19,10 @@ class User < ApplicationRecord
                  uniqueness: { case_sensitive: false },
                  length: { maximum: 105 },
                  format: { with: VALID_EMAIL_REGEX }
-    # validates :password, format: { with: /"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"/, message: " must be min 8 characters, at least one letter and one number!" }
-    validate :validate_image_attachement
-
+    validates :password, length: { minimum: 8}
     has_secure_password
+
+    validate :validate_image_attachement
     has_one_attached :image
 
     private
