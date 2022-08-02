@@ -1,64 +1,19 @@
 <body>
     <header>
-        <!-- Start of Image slider section -->
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-interval="7000">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner" role="listbox">
-                <!-- Slide 1 -->
-                <div class="carousel-item active" id="slide1">
-                    <div class="carousel-caption text-center">
-                        <h1>CREATE</h1>
-                        <h3>A space for creative magic to happen!</h3>
-                        <%= link_to "Sign up!", signup_path, class:"btn btn-lg btn-header" %>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="carousel-item" id="slide2">
-                    <div class="carousel-caption text-center">
-                        <h1>SHOWCASE</h1>
-                        <h3>See what others do and show us what you are proud of!</h3>
-                        <%= link_to "Browse projects", posts_path, class:"btn btn-lg btn-header" %>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="carousel-item" id="slide3">
-                    <div class="carousel-caption text-center">
-                        <h1>COLLABORATE</h1>
-                        <h3>Find your tribe!</h3>
-                        <%= link_to "Join collab", collabs_path, class:"btn btn-lg btn-header" %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of Image slider -->
+        <%= render 'carousel' %>
     </header>
     <main>     
-        <% @posts.each do |post| %>
-            <div class="col-lg-4 col-md-6 item-container">
-              <% if post.image.attached? %>
-                <%= image_tag post.image, class: "item-img" %>
-              <% else %>
-                <%= image_tag "default_profile.png", class: "item-img" %>
-              <% end %>
-              <div class="overlay">
-                <div class="overlay-content">
-                  <h5>by <%= link_to post.user.username, user_path(post.user) %></h5>
-                  <h3><%= post.title %></h3>
-                  <p class="item-text"><%= truncate(post.body, length:100) %></p>
-                  <p class="item-text">
-                    Tags: <%= raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-                  </p>
-                  <%= link_to "View", post_path(post), class: "btn btn-outline-light btn-md" %>
-                </div>
-              </div>     
+        <div class="container">
+            <H2> FEATURED PROJECT </H2>
+            <H5>Here goes text describing what this section is all about. Here goes text describing what this section is all about.  Here goes text describing what this  section is all about. </H5>
+            <div class="row justify-content-center mt-4">
+                <%= render 'post' %>
             </div>
-    <%end%> 
+            <H2> NEW COLLABS </H2>
+            <H5>Here goes text describing what this section is all about. Here goes text describing what this section is all about.  Here goes text describing what this  section is all about. </H5>
+            <div class="row justify-content-center mt-4">
+                <%= render 'collab' %>
+            </div>
+        </div>
     </main>
 </body>

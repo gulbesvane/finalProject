@@ -12,10 +12,10 @@ class CollabsController < ApplicationController
 
     @skills = Collab.tags_on(:skills).most_used(10).order("taggings_count DESC")
     if params[:skill]
-      @collabs = Collab.tagged_with(params[:skill]).paginate(page: params[:page], per_page: 2)
+      @collabs = Collab.tagged_with(params[:skill]).paginate(page: params[:page], per_page: 12)
     else
       #potentially change to views DESC if want to show by popularity, use will_paginate gem
-      @collabs = Collab.order("created_at DESC").paginate(page: params[:page], per_page: 2)
+      @collabs = Collab.order("created_at DESC").paginate(page: params[:page], per_page: 12)
     end
   end
 

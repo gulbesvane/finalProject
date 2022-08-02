@@ -16,10 +16,10 @@ class PostsController < ApplicationController
     @tags = Post.tags_on(:tags).most_used(10).order("taggings_count DESC")
     # @tags = ActsAsTaggableOn::Tag
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 20)
+      @posts = Post.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 12)
     else
       #potentially change to views DESC if want to show by popularity, use will_paginate gem
-      @posts = Post.order("created_at DESC").paginate(page: params[:page], per_page: 20)
+      @posts = Post.order("created_at DESC").paginate(page: params[:page], per_page: 12)
     end
   end
 

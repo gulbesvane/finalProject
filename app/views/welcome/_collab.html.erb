@@ -1,0 +1,26 @@
+<% @collabs.each do |collab| %>
+    <% if collab.participants > 0 || logged_in? && collab.users.exists?(current_user.id) %>
+        <div class="col-lg-4 col-md-6 item-container">
+        <div class="backdrop"></div>
+            <% if collab.image.attached? %>
+                <%= image_tag collab.image, class: "item-img" %>
+            <% else %>
+                <%= image_tag "lightbulb2.jpg", class: "item-img" %>
+            <% end %>
+        <div class="overlay">
+            <div class="overlay-content">
+            <h4><%= collab.title %></h4>
+            <p class="item-text"><%= truncate(collab.body, length:100) %></p>
+            <p class="item-text">
+            Skills needed: <%= raw collab.skill_list.map { |s| link_to s, skill_path(s) }.join(', ') %>
+            </p>
+            <%= link_to "VIEW", collab_path(collab), class: "btn btn-outline-light btn-md" %>
+            <% if logged_in? && (collab.owner == current_user.id || current_user.admin?) %>
+                <%= link_to "Edit", edit_collab_path(collab), class: "btn btn-outline-light btn-md" %>
+                <%= button_to 'DELETE', collab_path(collab),class: "btn btn-outline-light btn-md", method: :delete %>
+            <% end %> 
+            </div>
+        </div>
+        </div>
+    <% end %>
+<% end %>
