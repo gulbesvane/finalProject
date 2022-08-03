@@ -2,7 +2,7 @@
     <% if @collab.image.attached? %>
       <%= image_tag @collab.image, class: "card-img-top img-fluid full-img" %>
     <% else %>
-      <%= image_tag "default_profile.png", class: "card-img-top full-img" %>
+      <%= image_tag "lightbulb.jpg", class: "card-img-top full-img" %>
     <% end %>
   <div class="overlay"></div>
 </div>
@@ -26,7 +26,7 @@
 <% end %>
 
 
-<% if logged_in? && collab.users.exists?(current_user.id) %>
+<% if logged_in? && @collab.users.exists?(current_user.id) %>
   <h3>Chat</h3>
   <%= render partial: "messages/form", locals: { collab: @collab, parent: nil } %>
   <%# to improve performance do eager loading for user to preload data into memory instead of multiple request to database .includes(:user) %>

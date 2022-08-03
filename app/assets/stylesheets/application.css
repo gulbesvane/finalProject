@@ -67,7 +67,7 @@ a:hover{
 }
 .navbar:hover{
     background-color: #222629;
-    opacity:0.8;
+    opacity:0.6;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -100,7 +100,7 @@ a:hover{
 
 .dropdown-item:hover{
     background-color:transparent;
-    color:#aaaaaa;
+    color:white;
 }
 
 .sticky{
@@ -130,6 +130,10 @@ a:hover{
 }
 #slide3{
     background-image: url('desktop3.jpg');
+}
+
+#featuredProject{
+    background-image: url('project.jpg');
 }
 
 .carousel-overlay{
@@ -318,7 +322,7 @@ a:hover{
 }
 
 .overlay {
-    background-color: #000000c4;
+    background-color: #000000ea;
     opacity: 0;
     top: 0;
     bottom: 0;
@@ -347,18 +351,6 @@ a:hover{
 .comment-form{
     display:none;
 }
-.backdrop{
-    background-color: #222629;
-    opacity:0.2;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-}
-      
 
 /*---------TABLET AND MOBILE SIZE----------*/
 @media all and (max-width: 991px){

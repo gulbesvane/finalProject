@@ -1,20 +1,23 @@
-<h1>Project showcase</h1>
+<body>
+    <header>
+        <%= render 'header' %>
+    </header>
+    <main>
+      <div class="container">
+        <h2>PROJECT SHOWCASE</h2>
+        <H5>Here goes text describing what this section is all about. Here goes text describing what this section is all about.  Here goes text describing what this  section is all about. </H5>
 
-<% @tags.each do |tag| %>
-<h1><%= link_to tag, "/tags/#{tag}" %></h1>
-<% end %> 
-
-<div class="flickr_pagination">
-  <%= will_paginate @posts, :container => false %>
-</div>
-
-<div class="container">
-  <div class="row justify-content-center">
-    <%= render 'post' %>
-  </div>
-</div>
-
-
-<div class="flickr_pagination mb-4">
-  <%= will_paginate @posts, :container => false %>
-</div>
+        <h4>POPULAR TAGS:
+        <% @tags.each do |tag| %>
+        <%= link_to tag, "/tags/#{tag}" %>
+        <% end %> 
+        </h4>
+        <div class="row justify-content-center">
+          <%= render 'post' %>
+        </div>
+        <div class="flickr_pagination mb-4">
+          <%= will_paginate @posts, :container => false %>
+        </div>
+      </div>
+    </main>
+</body>

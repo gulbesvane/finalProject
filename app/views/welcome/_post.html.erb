@@ -1,6 +1,5 @@
 <% @posts.each do |post| %>
     <div class="col-lg-4 col-md-6 item-container">
-    <div class="backdrop"></div>
     <% if post.image.attached? %>
         <%= image_tag post.image, class: "item-img" %>
     <% else %>
